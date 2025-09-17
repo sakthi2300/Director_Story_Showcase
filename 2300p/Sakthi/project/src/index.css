@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #8B5CF6;
+  --primary-dark: #7C3AED;
+  --primary-light: #A78BFA;
+  --dark: #111827;
+  --dark-lighter: #1F2937;
+  --dark-lightest: #374151;
+  --accent: #C4B5FD;
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white;
+  }
+
+  input, textarea, select {
+    @apply text-white bg-dark-lighter;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-lighter/80 backdrop-blur-lg border border-primary/20 shadow-lg;
+  }
+
+  .glass-button {
+    @apply bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 
+           transition-all duration-300 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r 
+           before:from-primary before:via-primary-light before:to-primary-dark before:rounded-lg before:-z-10;
+  }
+
+  .input-field {
+    @apply bg-dark-lightest border border-primary/20 rounded-lg px-4 py-2 
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent
+           text-white placeholder-gray-400 w-full;
+  }
+
+  .select-field {
+    @apply bg-dark-lightest border border-primary/20 rounded-lg px-4 py-2 
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent
+           text-white appearance-none w-full;
+  }
+
+  .button-primary {
+    @apply bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg
+           transition-all duration-300 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .button-secondary {
+    @apply glass-button px-6 py-2 rounded-lg;
+  }
+
+  .card {
+    @apply glass-card rounded-lg p-6 transition-all duration-300 
+           hover:shadow-xl hover:shadow-primary/10;
+  }
+
+  .nav-link {
+    @apply text-gray-300 hover:text-white transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-primary font-medium;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-lighter;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/70 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  @apply w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin;
+}
+
+/* Tooltip */
+.tooltip {
+  @apply relative inline-block;
+}
+
+.tooltip .tooltip-text {
+  @apply invisible absolute z-10 px-3 py-2 text-sm text-white bg-dark-lighter rounded-lg
+         border border-primary/20 shadow-lg opacity-0 transition-opacity duration-300;
+}
+
+.tooltip:hover .tooltip-text {
+  @apply visible opacity-100;
+}
